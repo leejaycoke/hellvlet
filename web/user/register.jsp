@@ -7,16 +7,31 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
 </head>
 <body>
 
 <div class="container">
+    <div class="page-header">
+        <h1>지옥자바
+            <small>회원가입</small>
+        </h1>
+    </div>
+    <c:choose>
+        <c:when test="true == true">
+            ...1
+        </c:when>
+        <c:when test="false == true">
+            ...2
+        </c:when>
+        <c:otherwise>
+            ...3
+        </c:otherwise>
+    </c:choose>
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form>
+                    <form action="/user/register" method="POST">
                         <div class="form-group">
                             <label>아이디</label>
                             <input type="text" class="form-control input-lg" name="account">
@@ -25,13 +40,11 @@
                             <label>비밀번호</label>
                             <input type="password" class="form-control input-lg" name="password">
                         </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="is_remember"> 아이디 저장
-                            </label>
+                        <div class="form-group">
+                            <label>휴대폰 번호</label>
+                            <input type="text" class="form-control input-lg" name="phone">
                         </div>
-
-                        <button type="submit" class="btn btn-success btn-lg btn-block">로그인</button>
+                        <button type="submit" class="btn btn-success btn-lg btn-block">회원가입</button>
                     </form>
                 </div>
             </div>
