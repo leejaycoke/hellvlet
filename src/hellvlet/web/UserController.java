@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class UserController extends BaseController {
 
-    private Map<String, User> mUsers = new HashMap<>();
+    private final Map<String, User> mUsers = new HashMap<>();
 
     public void userRegisterGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
@@ -35,7 +35,20 @@ public class UserController extends BaseController {
 
     public void userLoginGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        render("/user/register.jsp", request, response);
+        render("/user/login.jsp", request, response);
+    }
+
+    public void userLoginPost(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
+        String account = String.valueOf(request.getParameter("account"));
+        String password = String.valueOf(request.getParameter("password"));
+
+        User user = mUsers.get(account);
+        if (user == null || !user.getPassword().equals(password)) {
+            request.setAttribute("error", "아이디 혹은 비밀번호가 틀립니다.");
+            render("/user/login.jsp", request, response);
+        }
+        
     }
 
 }

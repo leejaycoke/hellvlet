@@ -1,8 +1,9 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <title>회원가입</title>
+    <title>로그인</title>
     <meta charset="utf-8">
 
     <!-- Latest compiled and minified CSS -->
@@ -15,11 +16,18 @@
     <div class="page-header">
         <h1>지옥자바 <small>로그인</small></h1>
     </div>
+    <c:if test="${error != null}">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-danger">${error}</div>
+            </div>
+        </div>
+    </c:if>
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form>
+                    <form action="/user/login" method="POST">
                         <div class="form-group">
                             <label>아이디</label>
                             <input type="text" class="form-control input-lg" name="account">
@@ -38,6 +46,7 @@
                     </form>
                 </div>
             </div>
+            <div class="pull-right"><a href="/user/register"><h4>회원가입</h4></a></div>
         </div>
     </div>
 </div>

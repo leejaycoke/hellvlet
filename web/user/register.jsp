@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -16,17 +17,13 @@
             <small>회원가입</small>
         </h1>
     </div>
-    <c:choose>
-        <c:when test="true == true">
-            ...1
-        </c:when>
-        <c:when test="false == true">
-            ...2
-        </c:when>
-        <c:otherwise>
-            ...3
-        </c:otherwise>
-    </c:choose>
+    <c:if test="${error != null}">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-danger">${error}</div>
+        </div>
+    </div>
+    </c:if>
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -44,7 +41,7 @@
                             <label>휴대폰 번호</label>
                             <input type="text" class="form-control input-lg" name="phone">
                         </div>
-                        <button type="submit" class="btn btn-success btn-lg btn-block">회원가입</button>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">회원가입</button>
                     </form>
                 </div>
             </div>
