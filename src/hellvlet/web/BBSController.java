@@ -12,10 +12,11 @@ import java.util.List;
 public class BBSController extends BaseController {
 
 
-    private final List<BBS> mUsers = new ArrayList<>();
+    private final List<BBS> mPosts = new ArrayList<>();
 
     public void bbsListGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
+        request.setAttribute("posts", mPosts);
         render("/bbs/list.jsp", request, response);
     }
 
