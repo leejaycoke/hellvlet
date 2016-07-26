@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6595885-1560-447f-a8a6-2d251e49de82" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/lib/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hellvlet.iml" afterPath="$PROJECT_DIR$/Hellvlet.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/Hellvlet_war_exploded/user/register.jsp" afterPath="$PROJECT_DIR$/out/artifacts/Hellvlet_war_exploded/user/register.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hellvlet/web/UserController.java" afterPath="$PROJECT_DIR$/src/hellvlet/web/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/user/login.jsp" afterPath="$PROJECT_DIR$/web/user/login.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/user/register.jsp" afterPath="$PROJECT_DIR$/web/user/register.jsp" />
     </list>
     <ignored path="Hellvlet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,8 +57,8 @@
       <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/hellvlet/web/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
+            <state relative-caret-position="516">
+              <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -144,6 +138,7 @@
         <option value="$PROJECT_DIR$/src/hellvlet/web/BBSController.java" />
         <option value="$PROJECT_DIR$/web/user/register.jsp" />
         <option value="$PROJECT_DIR$/web/user/login.jsp" />
+        <option value="/usr/local/Cellar/tomcat/8.5.4/libexec/lib/servlet-api.jar!/javax/servlet/http/HttpServletRequest.class" />
         <option value="$PROJECT_DIR$/src/hellvlet/web/UserController.java" />
       </list>
     </option>
@@ -899,12 +894,12 @@
       <workItem from="1469450178870" duration="1808000" />
       <workItem from="1469498489835" duration="10047000" />
       <workItem from="1469512759077" duration="4046000" />
-      <workItem from="1469542487904" duration="1358000" />
+      <workItem from="1469542487904" duration="1508000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18223000" />
+    <option name="totallyTimeSpent" value="18373000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1097" extended-state="6" />
@@ -1191,10 +1186,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar:///usr/local/Cellar/tomcat/8.5.4/libexec/lib/servlet-api.jar!/javax/servlet/http/HttpServletRequest.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="945">
+          <caret line="63" column="35" selection-start-line="63" selection-start-column="35" selection-end-line="63" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/hellvlet/web/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
+        <state relative-caret-position="516">
+          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

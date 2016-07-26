@@ -5,6 +5,7 @@ import hellvlet.model.User;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -48,7 +49,9 @@ public class UserController extends BaseController {
             request.setAttribute("error", "아이디 혹은 비밀번호가 틀립니다.");
             render("/user/login.jsp", request, response);
         }
-        
+
+        HttpSession session = request.getSession();
+        session.setAttribute("account", account);
     }
 
 }
