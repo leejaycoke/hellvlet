@@ -1,15 +1,9 @@
 package hellvlet.model;
 
-public class BaseModel {
+public abstract class BaseModel {
 
-    private int id = 0;
+    public abstract int getNextId();
 
-    public BaseModel(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
+    public abstract int getId();
 
 }

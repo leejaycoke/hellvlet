@@ -7,7 +7,9 @@ import java.time.format.DateTimeFormatter;
 
 public class Post extends BaseModel {
 
-    private static int currentId;
+    private static int nextId;
+
+    private int id;
 
     private final UserService mUserService = new UserService();
 
@@ -22,11 +24,21 @@ public class Post extends BaseModel {
     private User user = null;
 
     public Post(int userId, String title, String content) {
-        super(++currentId);
+        this.id = getNextId();
         this.userId = userId;
         this.title = title;
         this.content = content;
         this.regDate = LocalDateTime.now();
+    }
+
+    @Override
+    public int getNextId() {
+        return ++nextId;
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 
     public int getUserId() {
@@ -53,5 +65,4 @@ public class Post extends BaseModel {
         User user = mUserService.findById(userId);
         return user;
     }
-
 }
