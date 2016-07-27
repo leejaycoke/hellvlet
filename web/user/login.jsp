@@ -14,7 +14,9 @@
 
 <div class="container">
     <div class="page-header">
-        <h1>지옥자바 <small>로그인</small></h1>
+        <h1>지옥자바
+            <small>로그인</small>
+        </h1>
     </div>
     <c:if test="${error != null}">
         <div class="row">
@@ -30,7 +32,8 @@
                     <form action="/user/login" method="POST">
                         <div class="form-group">
                             <label>아이디</label>
-                            <input type="text" class="form-control input-lg" name="account">
+                            <input type="text" class="form-control input-lg" name="account"
+                                   <c:if test="${account != null}">value="${account}"</c:if>>
                         </div>
                         <div class="form-group">
                             <label>비밀번호</label>
@@ -38,7 +41,7 @@
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="is_remember"> 아이디 저장
+                                <input type="checkbox" name="is_remember" <c:if test="${account != null}">checked</c:if>> 아이디 저장
                             </label>
                         </div>
 

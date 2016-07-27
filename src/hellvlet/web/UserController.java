@@ -4,6 +4,7 @@ import hellvlet.model.User;
 import hellvlet.service.UserService;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -39,7 +40,21 @@ public class UserController extends BaseController {
 
     public void userLoginGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
+
+        for (Cookie cookie : request.getCookies()) {
+            if (cookie.getName().equals("account")) {
+                request.setAttribute("account", cookie.getValue());
+                break;
+            }
+        }
+
         render("/user/login.jsp", request, response);
+    }
+
+    public void userLogoutGet(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
+        request.getSession().invalidate();
+        response.sendRedirect("/user/login");
     }
 
     public void userLoginPost(HttpServletRequest request, HttpServletResponse response)
@@ -58,6 +73,19 @@ public class UserController extends BaseController {
         HttpSession session = request.getSession();
         session.setAttribute("id", user.getId());
         session.setAttribute("account", user.getAccount());
+
+        if (request.getParameter("is_remember") != null) {
+            Cookie cookie = new Cookie("account", user.getAccount());
+            response.addCookie(cookie);
+        } else {
+            for (Cookie cookie : request.getCookies()) {
+                if (cookie.getName().equals("account")) {
+                    cookie.setMaxAge(0);
+                    cookie.setValue("");
+                    response.addCookie(cookie);
+                }
+            }
+        }
 
         response.sendRedirect("/bbs/list");
     }

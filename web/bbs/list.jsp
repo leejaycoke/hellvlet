@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <title>게시판 목록</title>
+    <title>글 목록</title>
     <meta charset="utf-8">
 
     <!-- Latest compiled and minified CSS -->
@@ -16,6 +16,11 @@
         <h1>지옥자바
             <small>게시판 목록</small>
         </h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="/user/logout"><h4>로그아웃</h4></a>
+        </div>
     </div>
     <div class="row">
         <div class="col-lg-12">
@@ -40,18 +45,21 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-1">
-            <select class="form-control" name="filter">
-                <option value="title">제목</option>
-                <option value="author">작성자</option>
-            </select>
-        </div>
-        <div class="col-lg-3">
-            <input type="text" class="form-control" name="q">
-        </div>
-        <div class="col-lg-1">
-            <button class="btn btn-default btn-block">검색</button>
-        </div>
+        <form action="/bbs/list" method="GET">
+            <div class="col-lg-1">
+                <select class="form-control" name="filter">
+                    <option value="title">제목</option>
+                    <option value="author">작성자</option>
+                </select>
+            </div>
+            <div class="col-lg-3">
+                <input type="text" class="form-control" name="q">
+            </div>
+
+            <div class="col-lg-1">
+                <button type="submit" class="btn btn-default btn-block">검색</button>
+            </div>
+        </form>
         <div class="col-lg-7">
             <a href="/bbs/write">
                 <button type="button" class="btn btn-primary pull-right">글쓰기</button>

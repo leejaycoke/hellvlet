@@ -1,10 +1,6 @@
 package hellvlet.model;
 
-public class User extends BaseModel {
-
-    private static int nextId;
-
-    private int id;
+public class User extends Model {
 
     private String account;
 
@@ -13,20 +9,9 @@ public class User extends BaseModel {
     private String password;
 
     public User(String account, String password, String phone) {
-        this.id = getNextId();
         this.account = account;
         this.password = password;
         this.phone = phone;
-    }
-
-    @Override
-    public int getNextId() {
-        return ++nextId;
-    }
-
-    @Override
-    public int getId() {
-        return id;
     }
 
     public String getAccount() {

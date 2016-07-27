@@ -5,44 +5,23 @@ import hellvlet.service.UserService;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Post extends BaseModel {
-
-    private static int nextId;
-
-    private int id;
+public class Post extends Model {
 
     private final UserService mUserService = new UserService();
 
-    private int userId;
+    private String title = null;
 
-    private String title;
+    private String content = null;
 
-    private String content;
-
-    private LocalDateTime regDate;
+    private LocalDateTime regDate = null;
 
     private User user = null;
 
-    public Post(int userId, String title, String content) {
-        this.id = getNextId();
-        this.userId = userId;
+    public Post(User user, String title, String content) {
+        this.user = user;
         this.title = title;
         this.content = content;
         this.regDate = LocalDateTime.now();
-    }
-
-    @Override
-    public int getNextId() {
-        return ++nextId;
-    }
-
-    @Override
-    public int getId() {
-        return id;
-    }
-
-    public int getUserId() {
-        return userId;
     }
 
     public String getTitle() {
@@ -62,7 +41,6 @@ public class Post extends BaseModel {
     }
 
     public User getUser() {
-        User user = mUserService.findById(userId);
         return user;
     }
 }

@@ -18,6 +18,7 @@
         <servlet-name>UserController</servlet-name>
         <url-pattern>/user/register</url-pattern>
         <url-pattern>/user/login</url-pattern>
+        <url-pattern>/user/logout</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
