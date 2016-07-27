@@ -18,11 +18,11 @@
         </h1>
     </div>
     <c:if test="${error != null}">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="alert alert-danger">${error}</div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-danger">${error}</div>
+            </div>
         </div>
-    </div>
     </c:if>
     <div class="row">
         <div class="col-lg-12">

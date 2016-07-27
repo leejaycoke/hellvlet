@@ -1,18 +1,17 @@
 package hellvlet.web;
 
 import hellvlet.model.User;
+import hellvlet.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class UserController extends BaseController {
 
-    private final Map<String, User> mUsers = new HashMap<>();
+    private final UserService mUserService = new UserService();
 
     public void userRegisterGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
@@ -22,7 +21,9 @@ public class UserController extends BaseController {
     public void userRegisterPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         String account = String.valueOf(request.getParameter("account"));
-        if (mUsers.containsKey(account)) {
+
+        User existsUser = mUserService.findByAccount(account);
+        if (existsUser != null) {
             request.setAttribute("error", "이미 사용중인 아이디입니다.");
             render("/user/register.jsp", request, response);
         }
@@ -31,7 +32,9 @@ public class UserController extends BaseController {
         String phone = String.valueOf(request.getParameter("phone"));
 
         User user = new User(account, password, phone);
-        mUsers.put(account, user);
+        mUserService.create(user);
+
+        response.sendRedirect("/user/login");
     }
 
     public void userLoginGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,17 +44,22 @@ public class UserController extends BaseController {
 
     public void userLoginPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        String account = String.valueOf(request.getParameter("account"));
-        String password = String.valueOf(request.getParameter("password"));
 
-        User user = mUsers.get(account);
+        String account = request.getParameter("account");
+        String password = request.getParameter("password");
+
+        User user = mUserService.findByAccount(account);
         if (user == null || !user.getPassword().equals(password)) {
             request.setAttribute("error", "아이디 혹은 비밀번호가 틀립니다.");
             render("/user/login.jsp", request, response);
+            return;
         }
 
         HttpSession session = request.getSession();
-        session.setAttribute("account", account);
+        session.setAttribute("id", user.getId());
+        session.setAttribute("account", user.getAccount());
+
+        response.sendRedirect("/bbs/list");
     }
 
 }

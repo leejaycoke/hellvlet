@@ -1,6 +1,8 @@
 package hellvlet.model;
 
-public class User {
+public class User extends BaseModel {
+
+    private static int lastId = 0;
 
     private String account;
 
@@ -9,6 +11,7 @@ public class User {
     private String password;
 
     public User(String account, String password, String phone) {
+        super(++lastId);
         this.account = account;
         this.password = password;
         this.phone = phone;

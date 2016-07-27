@@ -21,12 +21,41 @@
         <div class="col-lg-12">
             <table class="table table-bordered">
                 <thead>
-                    <th class="col-lg-1">번호</th>
-                    <th class="col-lg-2">사용자</th>
-                    <th class="col-lg-6">제목</th>
-                    <th class="col-lg-3">작성일</th>
+                <th class="col-lg-1">번호</th>
+                <th class="col-lg-2">사용자</th>
+                <th class="col-lg-6">제목</th>
+                <th class="col-lg-3">작성일</th>
                 </thead>
+                <tbody>
+                <c:forEach var="post" items="${posts}">
+                    <tr>
+                        <td>${post.id}</td>
+                        <td>${post.user.account}</td>
+                        <td>${post.title}</td>
+                        <td>${post.regDateStr}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
             </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1">
+            <select class="form-control" name="filter">
+                <option value="title">제목</option>
+                <option value="author">작성자</option>
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <input type="text" class="form-control" name="q">
+        </div>
+        <div class="col-lg-1">
+            <button class="btn btn-default btn-block">검색</button>
+        </div>
+        <div class="col-lg-7">
+            <a href="/bbs/write">
+                <button type="button" class="btn btn-primary pull-right">글쓰기</button>
+            </a>
         </div>
     </div>
 </div>
