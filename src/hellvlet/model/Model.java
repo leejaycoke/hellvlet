@@ -2,7 +2,7 @@ package hellvlet.model;
 
 import java.util.Comparator;
 
-public abstract class Model implements Comparator<Model> {
+public abstract class Model {
 
     private int id = 0;
 
@@ -14,8 +14,4 @@ public abstract class Model implements Comparator<Model> {
         return id;
     }
 
-    @Override
-    public int compare(Model o1, Model o2) {
-        return o1.getId() == o2.getId() ? 0 : (o1.getId() > o2.getId() ? 1 : 0);
-    }
 }

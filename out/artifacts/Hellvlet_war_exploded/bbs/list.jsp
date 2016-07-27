@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <title>게시판 목록</title>
+    <title>글 목록</title>
     <meta charset="utf-8">
 
     <!-- Latest compiled and minified CSS -->
