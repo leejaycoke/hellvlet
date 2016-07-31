@@ -1,7 +1,5 @@
 package hellvlet.model;
 
-import java.util.Comparator;
-
 public abstract class Model {
 
     private int id = 0;
