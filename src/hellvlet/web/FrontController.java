@@ -16,7 +16,7 @@ import java.util.Map;
 public class FrontController extends HttpServlet {
 
     private Map<String, Object> mControllers = null;
-    private Map<Object, Map<String, Method>> mMethods = new HashMap<>();
+    private Map<Object, Map<String, Method>> mRouters = null;
 
     public FrontController() {
         super();
@@ -29,6 +29,10 @@ public class FrontController extends HttpServlet {
             mControllers = (Map<String, Object>) getServletContext().getAttribute("controllers");
         }
 
+        if (mRouters == null) {
+            mRouters = (Map<Object, Map<String, Method>>) getServletContext().getAttribute("routers");
+        }
+
         String uri = req.getRequestURI();
         String controllerName = parseControllerName(uri);
         String routerName = parseRouter(uri);
@@ -37,57 +41,37 @@ public class FrontController extends HttpServlet {
         System.out.printf("controllerName: %s\n", controllerName);
         System.out.printf("routerName: %s\n", routerName);
 
-        if (!mControllers.containsKey(controllerName)) {
+        Object controller = mControllers.get(controllerName);
+        if (controller == null) {
             resp.getWriter().write("404 controller: " + controllerName);
             return;
         }
 
-        Object controller = mControllers.get(controllerName);
-        Method routerMethod = mMethods.get(controller).get(routerName);
-
-        if (routerMethod != null) {
-            try {
-                routerMethod.invoke(controller);
-                return;
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
+        if (!mRouters.containsKey(controller)) {
+            System.out.println("router not contains controller");
         }
 
-        for (Method method : controller.getClass().getMethods()) {
-            if (!method.isAnnotationPresent(Router.class)) {
-                continue;
-            }
+        System.out.println(String.valueOf(">>>>>>>>>>>>>>>" + mRouters.keySet().size()));
+        for (Object o : mRouters.keySet()) {
+            System.out.println(String.valueOf(o));
+        }
 
-            Router router = method.getAnnotation(Router.class);
-            System.out.printf("router: %b\n", router != null);
-            System.out.printf("router httpmethod: %s\n", router.httpMethod().name());
+        Map<String, Method> router = mRouters.get(controller);
+        String key = routerName + ":" + req.getMethod();
+        Method method = router.get(key);
 
-            if (!router.httpMethod().name().equals(req.getMethod())) {
-                System.out.println("differences httpmethod");
-                continue;
-            }
+        if (method == null) {
+            resp.getWriter().write("404 router: " + routerName);
+            return;
+        }
 
-            if (router.path().equals(routerName)) {
-                System.out.println("differences router path");
-                continue;
-            }
-
-            Map<String, Method> routerMapping = new HashMap<>();
-            routerMapping
-            mMethods.put(controller, );
-
-            try {
-                method.invoke(controller);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
-
-            resp.getWriter().write("404 router not found: " + routerName);
+        try {
+            System.out.println("invoke");
+            method.invoke(controller, req, resp);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 

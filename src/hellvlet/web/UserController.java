@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Controller(basePath = "/user")
-public class UserController {
+public class UserController extends BaseController {
 
     @Router(path = "/register")
-    public void register(HttpServletRequest request, HttpServletResponse) {
-        render("/user/register.jsp", request, response);
+    public void register(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        render("/user/register.jsp", req, resp);
     }
 //
 //    public void userRegisterPost(HttpServletRequest request, HttpServletResponse response)
