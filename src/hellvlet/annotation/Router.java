@@ -1,5 +1,7 @@
 package hellvlet.annotation;
 
+import hellvlet.web.HttpMethod;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -12,9 +14,4 @@ public @interface Router {
     String path();
 
     HttpMethod httpMethod() default HttpMethod.GET;
-}
-
-enum HttpMethod {
-
-    GET, POST
 }

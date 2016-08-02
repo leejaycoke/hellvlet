@@ -2,27 +2,18 @@ package hellvlet.web;
 
 import hellvlet.annotation.Controller;
 import hellvlet.annotation.Router;
-import hellvlet.model.User;
-import hellvlet.service.UserService;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller(basePath = "/user")
 public class UserController {
 
-    //    private final UserService mUserService = new UserService();
-//
-//
     @Router(path = "/register")
-    public void register(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException {
-//        render("/user/register.jsp", request, response);
+    public void register(HttpServletRequest request, HttpServletResponse) {
+        render("/user/register.jsp", request, response);
     }
 //
 //    public void userRegisterPost(HttpServletRequest request, HttpServletResponse response)

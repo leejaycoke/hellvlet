@@ -1,13 +1,9 @@
 package hellvlet;
 
 import hellvlet.annotation.Controller;
-import hellvlet.annotation.Router;
-import hellvlet.web.BaseController;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,8 +14,7 @@ public class RoutingListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        Map<String, Class> requestMapper = new HashMap<>();
-
+        Map<String, Object> controllers = new HashMap<>();
         for (String name : CONTROLLERS) {
             try {
                 Class<?> clazz = Class.forName("hellvlet.web." + name);
@@ -32,13 +27,19 @@ public class RoutingListener implements ServletContextListener {
 
                 Controller controller = clazz.getAnnotation(Controller.class);
                 String basePath = controller.basePath();
-                requestMapper.put(basePath, clazz);
+                controllers.put(basePath, clazz.newInstance());
             } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
         }
 
-        servletContextEvent.getServletContext().setAttribute("injectedControllers", requestMapper);
+        System.out.println("injecting controllers complete");
+
+        servletContextEvent.getServletContext().setAttribute("controllers", controllers);
     }
 
     @Override
