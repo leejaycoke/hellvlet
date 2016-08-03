@@ -1,5 +1,7 @@
 package hellvlet.web;
 
+import hellvlet.annotation.Router;
+import hellvlet.http.HttpMethod;
 import hellvlet.model.User;
 import hellvlet.service.UserService;
 
@@ -14,12 +16,14 @@ public class UserController extends BaseController {
 
     private final UserService mUserService = new UserService();
 
-    public void userRegisterGet(HttpServletRequest request, HttpServletResponse response)
+    @Router(path = "/register")
+    public void registerView(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         render("/user/register.jsp", request, response);
     }
 
-    public void userRegisterPost(HttpServletRequest request, HttpServletResponse response)
+    @Router(path = "/register", method = HttpMethod.POST)
+    public void register(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         String account = String.valueOf(request.getParameter("account"));
 
@@ -38,7 +42,8 @@ public class UserController extends BaseController {
         response.sendRedirect("/user/login");
     }
 
-    public void userLoginGet(HttpServletRequest request, HttpServletResponse response)
+    @Router(path = "/login")
+    public void loginView(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
         for (Cookie cookie : request.getCookies()) {
@@ -51,13 +56,15 @@ public class UserController extends BaseController {
         render("/user/login.jsp", request, response);
     }
 
+    @Router(path = "/logout")
     public void userLogoutGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         request.getSession().invalidate();
         response.sendRedirect("/user/login");
     }
 
-    public void userLoginPost(HttpServletRequest request, HttpServletResponse response)
+    @Router(path = "/login", method = HttpMethod.POST)
+    public void login(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
         String account = request.getParameter("account");

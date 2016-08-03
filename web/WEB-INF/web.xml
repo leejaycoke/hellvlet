@@ -11,7 +11,7 @@
 
     <servlet>
         <servlet-name>BBSController</servlet-name>
-        <servlet-class>hellvlet.web.BBSController</servlet-class>
+        <servlet-class>hellvlet.web.PostController</servlet-class>
     </servlet>
 
     <servlet-mapping>

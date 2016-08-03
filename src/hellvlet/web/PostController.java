@@ -1,5 +1,7 @@
 package hellvlet.web;
 
+import hellvlet.annotation.Router;
+import hellvlet.http.HttpMethod;
 import hellvlet.model.Post;
 import hellvlet.model.User;
 import hellvlet.service.BBSService;
@@ -13,13 +15,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BBSController extends BaseController {
+public class PostController extends BaseController {
 
     private final BBSService mBBSService = new BBSService();
 
     private final UserService mUserService = new UserService();
 
-    public void bbsListGet(HttpServletRequest request, HttpServletResponse response)
+    @Router(path = "/list")
+    public void postListView(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
         String filter = request.getParameter("filter");
@@ -37,17 +40,20 @@ public class BBSController extends BaseController {
         render("/bbs/list.jsp", request, response);
     }
 
-    public void bbsWriteGet(HttpServletRequest request, HttpServletResponse response)
+    @Router(path = "/write")
+    public void writeView(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         render("/bbs/write.jsp", request, response);
     }
 
-    public void bbsEditGet(HttpServletRequest request, HttpServletResponse response)
+    @Router(path = "/edit?")
+    public void editView(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         render("/bbs/edit.jsp", request, response);
     }
 
-    public void bbsWritePost(HttpServletRequest request, HttpServletResponse response)
+    @Router(path = "/write", method = HttpMethod.POST)
+    public void write(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         String title = request.getParameter("title");
         String content = request.getParameter("content");
