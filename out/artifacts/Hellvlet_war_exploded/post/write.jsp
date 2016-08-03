@@ -21,7 +21,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form action="/bbs/write" method="POST">
+                    <form action="/post/write" method="POST">
                         <div class="form-group">
                             <label>작성자</label>
                             <p>${sessionScope.get("account")}</p>

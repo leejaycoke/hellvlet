@@ -10,7 +10,7 @@
     </servlet>
 
     <servlet>
-        <servlet-name>BBSController</servlet-name>
+        <servlet-name>PostController</servlet-name>
         <servlet-class>hellvlet.web.PostController</servlet-class>
     </servlet>
 
@@ -22,12 +22,12 @@
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>BBSController</servlet-name>
-        <url-pattern>/bbs/list</url-pattern>
-        <url-pattern>/bbs/write</url-pattern>
-        <url-pattern>/bbs/search</url-pattern>
-        <url-pattern>/bbs/edit</url-pattern>
-        <url-pattern>/bbs/view</url-pattern>
+        <servlet-name>PostController</servlet-name>
+        <url-pattern>/post/list</url-pattern>
+        <url-pattern>/post/write</url-pattern>
+        <url-pattern>/post/search</url-pattern>
+        <url-pattern>/post/edit</url-pattern>
+        <url-pattern>/post/view</url-pattern>
     </servlet-mapping>
 
 </web-app>

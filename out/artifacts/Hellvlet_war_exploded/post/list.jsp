@@ -45,7 +45,7 @@
         </div>
     </div>
     <div class="row">
-        <form action="/bbs/list" method="GET">
+        <form action="/post/list" method="GET">
             <div class="col-lg-1">
                 <select class="form-control" name="filter">
                     <option value="title">제목</option>
@@ -61,7 +61,7 @@
             </div>
         </form>
         <div class="col-lg-7">
-            <a href="/bbs/write">
+            <a href="/post/write">
                 <button type="button" class="btn btn-primary pull-right">글쓰기</button>
             </a>
         </div>
