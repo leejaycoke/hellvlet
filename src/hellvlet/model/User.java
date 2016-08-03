@@ -1,18 +1,16 @@
 package hellvlet.model;
 
+import hellvlet.annotation.Column;
+
 public class User extends Model {
 
-    private String account;
+    @Column
+    public String account;
 
-    private String phone;
+    public String phone;
 
-    private String password;
-
-    public User(String account, String password, String phone) {
-        this.account = account;
-        this.password = password;
-        this.phone = phone;
-    }
+    @Column
+    public String password;
 
     public String getAccount() {
         return account;
@@ -24,6 +22,18 @@ public class User extends Model {
 
     public String getPhone() {
         return phone;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

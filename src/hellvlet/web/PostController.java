@@ -55,14 +55,14 @@ public class PostController extends BaseController {
     @Router(path = "/write", method = HttpMethod.POST)
     public void write(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        String title = request.getParameter("title");
-        String content = request.getParameter("content");
-        int userId = (int) request.getSession().getAttribute("id");
-
-        User user = mUserService.get(userId);
-        Post post = new Post(user, title, content);
-        mBBSService.create(post);
-
-        response.sendRedirect("/bbs/list");
+//        String title = request.getParameter("title");
+//        String content = request.getParameter("content");
+//        int userId = (int) request.getSession().getAttribute("id");
+//
+//        User user = mUserService.get(userId);
+//        Post post = new Post(user, title, content);
+//        mBBSService.create(post);
+//
+//        response.sendRedirect("/bbs/list");
     }
 }
