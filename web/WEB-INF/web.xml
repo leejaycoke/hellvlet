@@ -9,8 +9,8 @@
     </listener>
 
     <servlet>
-        <servlet-name>FrontController</servlet-name>
-        <servlet-class>hellvlet.web.FrontController</servlet-class>
+        <servlet-name>PostController</servlet-name>
+        <servlet-class>hellvlet.web.PostController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -18,29 +18,13 @@
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
-    <!--<servlet>-->
-    <!--<servlet-name>UserController</servlet-name>-->
-    <!--<servlet-class>hellvlet.web.UserController</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet>-->
-    <!--<servlet-name>BBSController</servlet-name>-->
-    <!--<servlet-class>hellvlet.web.BBSController</servlet-class>-->
-    <!--</servlet>-->
-
-    <!--<servlet-mapping>-->
-    <!--<servlet-name>UserController</servlet-name>-->
-    <!--<url-pattern>/user/register</url-pattern>-->
-    <!--<url-pattern>/user/login</url-pattern>-->
-    <!--<url-pattern>/user/logout</url-pattern>-->
-    <!--</servlet-mapping>-->
-
-    <!--<servlet-mapping>-->
-    <!--<servlet-name>BBSController</servlet-name>-->
-    <!--<url-pattern>/bbs/list</url-pattern>-->
-    <!--<url-pattern>/bbs/write</url-pattern>-->
-    <!--<url-pattern>/bbs/search</url-pattern>-->
-    <!--<url-pattern>/bbs/edit</url-pattern>-->
-    <!--<url-pattern>/bbs/view</url-pattern>-->
-    <!--</servlet-mapping>-->
+    <servlet-mapping>
+        <servlet-name>PostController</servlet-name>
+        <url-pattern>/post/list</url-pattern>
+        <url-pattern>/post/write</url-pattern>
+        <url-pattern>/post/search</url-pattern>
+        <url-pattern>/post/edit</url-pattern>
+        <url-pattern>/post/view</url-pattern>
+    </servlet-mapping>
 
 </web-app>

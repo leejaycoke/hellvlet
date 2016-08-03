@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <title>게시판 목록</title>
+    <title>회원가입</title>
     <meta charset="utf-8">
 
     <!-- Latest compiled and minified CSS -->
@@ -14,27 +14,34 @@
 <div class="container">
     <div class="page-header">
         <h1>지옥자바
-            <small>게시글 작성</small>
+            <small>회원가입</small>
         </h1>
     </div>
+    <c:if test="${error != null}">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-danger">${error}</div>
+            </div>
+        </div>
+    </c:if>
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form action="/bbs/write" method="POST">
+                    <form action="/user/register" method="POST">
                         <div class="form-group">
-                            <label>작성자</label>
-                            <p>${sessionScope.get("account")}</p>
+                            <label>아이디</label>
+                            <input type="text" class="form-control input-lg" name="account">
                         </div>
                         <div class="form-group">
-                            <label>제목</label>
-                            <input type="text" class="form-control input-lg" name="title">
+                            <label>비밀번호</label>
+                            <input type="password" class="form-control input-lg" name="password">
                         </div>
                         <div class="form-group">
-                            <label>내용</label>
-                            <textarea class="form-control input-lg" name="content"></textarea>
+                            <label>휴대폰 번호</label>
+                            <input type="text" class="form-control input-lg" name="phone">
                         </div>
-                        <button type="submit" class="btn btn-default btn-lg pull-right">완료</button>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">회원가입</button>
                     </form>
                 </div>
             </div>

@@ -1,5 +1,7 @@
 package hellvlet.web;
 
+import hellvlet.annotation.Router;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,36 +15,38 @@ import java.util.Arrays;
 
 public abstract class BaseController extends HttpServlet {
 
-//    public void doGet(HttpServletRequest request, HttpServletResponse response)
-//            throws IOException, ServletException {
-//        routeMethod("Get", request, response);
-//    }
-//
-//    public void doPost(HttpServletRequest request, HttpServletResponse response)
-//            throws IOException, ServletException {
-//        routeMethod("Post", request, response);
-//    }
+    @Override
+    public void service(HttpServletRequest req, HttpServletResponse resp) {
+        String path = req.getServletPath();
+        String controllerName = parseController(path);
+        String routerName = parseRouter(path);
 
-//    private void routeMethod(String httpMethod, HttpServletRequest request, HttpServletResponse response)
-//            throws IOException, ServletException {
-//        String path = request.getServletPath();
-//        System.out.printf("requestedPath: %s\n", path);
-//
-//        String methodName = parsePathToCarmelCase(path) + httpMethod;
-//
-//        System.out.printf("methodName: %s\n", methodName);
-//
-//        final Class[] args = new Class[2];
-//        args[0] = HttpServletRequest.class;
-//        args[1] = HttpServletResponse.class;
-//
-//        try {
-//            Method method = getClass().getMethod(methodName, args);
-//            method.invoke(this, request, response);
-//        } catch (NoSuchMethodException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-//            e.printStackTrace();
-//        }
-//    }
+        System.out.printf("requested path: %s\n", path);
+        System.out.printf("requested controller: %s\n", controllerName);
+        System.out.printf("requested router: %s\n", routerName);
+
+        for (Method method : getClass().getMethods()) {
+            if (!method.isAnnotationPresent(Router.class)) {
+                continue;
+            }
+
+            Router router = method.getAnnotation(Router.class);
+
+            if (!router.path().equals(routerName)) {
+                continue;
+            }
+
+            if (!router.method().name().equals(req.getMethod())) {
+                continue;
+            }
+
+            try {
+                method.invoke(this, req, resp);
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     void render(String s, HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
@@ -50,24 +54,14 @@ public abstract class BaseController extends HttpServlet {
         view.forward(request, response);
     }
 
-//    private String parsePathToCarmelCase(String path) {
-//        ArrayList<String> paths = new ArrayList<>(Arrays.asList(path.split("/")));
-//        paths.removeIf(item -> item.trim().equals(""));
-//
-//        String first = paths.get(0).toLowerCase();
-//
-//        if (paths.size() == 1) {
-//            return first;
-//        }
-//
-//        StringBuilder s = new StringBuilder();
-//
-//        paths.subList(1, paths.size()).forEach(item -> {
-//            s.append(item.substring(0, 1).toUpperCase());
-//            s.append(item.substring(1, item.length()).toLowerCase());
-//        });
-//
-//        return first + s.toString();
-//    }
+    private String parseController(String path) {
+        String[] uris = path.split("/");
+        return uris.length > 1 ? "/" + uris[1] : "/";
+    }
+
+    private String parseRouter(String path) {
+        String controller = parseController(path);
+        return path.replace(controller, "");
+    }
 
 }

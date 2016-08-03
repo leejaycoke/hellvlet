@@ -1,24 +1,21 @@
 package hellvlet.service;
 
+import hellvlet.db.UserDAO;
 import hellvlet.model.User;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+public class UserService {
 
-public class UserService extends Service<User> {
+    private final UserDAO mUserDAO = new UserDAO();
 
-    private final static List<User> mUsers = new ArrayList<>();
+    public User doLogin(String account, String password) {
+        User user = mUserDAO.findByAccount(account);
+        if (user != null) {
+            if (user.password.equals(password)) {
+                return user;
+            }
+        }
 
-    public UserService() {
-        super(mUsers);
-    }
-
-    public User findByAccount(String account) {
-        List<User> items = mUsers.stream()
-                .filter(item -> item.getAccount().equals(account))
-                .collect(Collectors.toList());
-        return items.size() == 1 ? items.get(0) : null;
+        return null;
     }
 
 }

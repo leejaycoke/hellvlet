@@ -9,8 +9,13 @@
     </listener>
 
     <servlet>
+<<<<<<< HEAD
         <servlet-name>FrontController</servlet-name>
         <servlet-class>hellvlet.web.FrontController</servlet-class>
+=======
+        <servlet-name>PostController</servlet-name>
+        <servlet-class>hellvlet.web.PostController</servlet-class>
+>>>>>>> last-state
     </servlet>
 
     <servlet-mapping>
@@ -18,6 +23,7 @@
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
+<<<<<<< HEAD
     <!--<servlet>-->
     <!--<servlet-name>UserController</servlet-name>-->
     <!--<servlet-class>hellvlet.web.UserController</servlet-class>-->
@@ -42,5 +48,15 @@
     <!--<url-pattern>/bbs/edit</url-pattern>-->
     <!--<url-pattern>/bbs/view</url-pattern>-->
     <!--</servlet-mapping>-->
+=======
+    <servlet-mapping>
+        <servlet-name>PostController</servlet-name>
+        <url-pattern>/post/list</url-pattern>
+        <url-pattern>/post/write</url-pattern>
+        <url-pattern>/post/search</url-pattern>
+        <url-pattern>/post/edit</url-pattern>
+        <url-pattern>/post/view</url-pattern>
+    </servlet-mapping>
+>>>>>>> last-state
 
 </web-app>
